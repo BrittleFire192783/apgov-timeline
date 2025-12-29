@@ -13,52 +13,70 @@
 
   <body>
     <header class="site-header">
-      <div class="wrap">
+      <div class="wrap header-inner">
         <div class="brand">
           <div class="brand-title">AP Timeline</div>
-          <div class="brand-subtitle">Scroll thumbnails. Quick jump for exact years.</div>
+          <div class="brand-subtitle">
+            Scroll through years. Click a year to expand what happened, then open a detail.
+          </div>
         </div>
 
-        <nav class="top-actions" aria-label="Top actions">
-          <a class="btn" href="#browse">Browse</a>
-          <a class="btn" href="#timeline">Quick jump</a>
+        <div class="header-tools" aria-label="Quick tools">
+          <label class="muted small" for="yearSelect">Jump</label>
+          <select id="yearSelect" class="select" aria-label="Jump to year">
+            <option value="">Select a year</option>
+          </select>
           <a class="btn btn-secondary" href="#howto">How to use</a>
-        </nav>
+        </div>
       </div>
     </header>
 
     <main class="wrap">
-      <!-- Visual scroller -->
-      <section id="browse" class="timeline-section" aria-label="Browse timeline">
+      <section class="timeline-section" aria-label="Browse by period">
         <div class="timeline-header">
-          <h1 class="h1">Browse by year</h1>
-          <div class="status">
-            <span id="statusText">Scroll and click a year to open the card.</span>
-          </div>
+          <h1 class="h1">Timeline</h1>
+          <div class="status"><span id="statusText">Scroll to a year. Click it to expand.</span></div>
         </div>
 
-        <div class="scroller" aria-label="Year scroller">
-          <button class="scroller-nav" id="scrollerPrev" type="button" aria-label="Scroll left">
-            ◀
-          </button>
+        <!-- Full-screen scroll area -->
+        <div id="periods" class="periods" aria-label="Year sections"></div>
+      </section>
 
-          <div id="scrollerTrack" class="scroller-track" role="list"></div>
+      <!-- Expands between timeline and how-to -->
+      <section id="periodExpand" class="expand" aria-label="Period details">
+        <div class="expand-shell">
+          <div class="expand-top">
+            <div>
+              <div id="expandTitle" class="expand-title">Select a year</div>
+              <div id="expandMeta" class="expand-meta">Period summary and items appear here.</div>
+            </div>
+            <button id="btnCollapse" class="btn btn-secondary" type="button">Collapse</button>
+          </div>
 
-          <button class="scroller-nav" id="scrollerNext" type="button" aria-label="Scroll right">
-            ▶
-          </button>
+          <div class="expand-body">
+            <div class="grid">
+              <div class="panel span-2">
+                <h2 class="h2">What happened in this period</h2>
+                <p id="expandSummary" class="p muted">...</p>
+              </div>
+
+              <div class="panel span-2">
+                <h2 class="h2">Items in this year</h2>
+                <div id="expandItems" class="item-list"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <!-- Case card (hidden until click) -->
-      <section id="caseCard" class="card-section" aria-label="Case or event card">
+      <!-- Detail card (hidden until an item is chosen) -->
+      <section id="detailCard" class="card-section" aria-label="Detail card">
         <div class="card-shell">
           <div class="card-topbar">
             <div class="card-titleblock">
-              <div id="cardTitle" class="card-title">Select a year</div>
-              <div id="cardMeta" class="card-meta">Year, category, and subject will appear here.</div>
+              <div id="cardTitle" class="card-title">Select an item</div>
+              <div id="cardMeta" class="card-meta">Year, subject, and category appear here.</div>
             </div>
-
             <div class="card-tags" id="cardTags" aria-label="Tags"></div>
           </div>
 
@@ -66,7 +84,7 @@
             <div class="grid">
               <div class="panel">
                 <h2 class="h2">Quick Take</h2>
-                <p id="quickTake" class="p muted">Click a year above to load content.</p>
+                <p id="quickTake" class="p muted">Choose an item from the expanded period panel.</p>
               </div>
 
               <div class="panel">
@@ -121,7 +139,7 @@
                     <ul id="leadsToList" class="list"></ul>
                   </div>
                   <div>
-                    <div class="kicker">Connects back to</div>
+                    <div class="kicker">Connects back</div>
                     <ul id="connectsBackList" class="list"></ul>
                   </div>
                 </div>
@@ -143,27 +161,6 @@
         </div>
       </section>
 
-      <!-- Quick jump tools -->
-      <section id="timeline" class="timeline-section" aria-label="Quick jump tools">
-        <div class="timeline-header">
-          <h1 class="h1">Quick jump</h1>
-          <div class="status">
-            <label class="muted small" for="yearSelect">Jump to year</label>
-          </div>
-        </div>
-
-        <div class="timeline">
-          <div class="quick-row">
-            <select id="yearSelect" class="select" aria-label="Jump to year">
-              <option value="">Select a year</option>
-            </select>
-          </div>
-
-          <div class="timeline-items" id="timelineItems" aria-label="Condensed timeline"></div>
-        </div>
-      </section>
-
-      <!-- How to use -->
       <section id="howto" class="timeline-section" aria-label="How to use">
         <div class="timeline-header">
           <h1 class="h1">How to use</h1>
@@ -173,29 +170,29 @@
         <div class="timeline">
           <div class="grid">
             <div class="panel">
-              <h2 class="h2">What it is</h2>
-              <p class="p muted">
-                A timeline that opens a card with facts, the core question, the holding, reasoning, and why it matters.
-                Long term goal: AP Gov plus APUSH in one place.
-              </p>
+              <h2 class="h2">Flow</h2>
+              <ul class="list">
+                <li>Scroll the timeline, each screen is a year.</li>
+                <li>Click a year to expand what happened.</li>
+                <li>Select an item to open the detail card.</li>
+              </ul>
             </div>
 
             <div class="panel">
-              <h2 class="h2">How to study</h2>
+              <h2 class="h2">Fast review</h2>
               <ul class="list">
-                <li>Browse the thumbnails to get the era flow.</li>
-                <li>Use Quick jump for an exact year.</li>
+                <li>Use Jump to land on an exact year.</li>
                 <li>Read Quick Take and Holding first.</li>
                 <li>Use Connections to link themes.</li>
               </ul>
             </div>
 
             <div class="panel span-2">
-              <h2 class="h2">Demo set</h2>
-              <ul class="list">
-                <li>McCulloch v. Maryland (1819)</li>
-                <li>Gibbons v. Ogden (1824)</li>
-              </ul>
+              <h2 class="h2">Long term</h2>
+              <p class="p muted">
+                This structure supports AP Gov and APUSH on the same timeline by mixing subjects and
+                categories per year.
+              </p>
             </div>
           </div>
         </div>

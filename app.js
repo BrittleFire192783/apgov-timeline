@@ -71,61 +71,62 @@ function setTags(tags) {
   }
 }
 
-function showCard() {
-  const card = $("caseCard");
-  if (card) card.classList.add("is-visible");
+function showExpand() {
+  $("periodExpand")?.classList.add("is-visible");
 }
 
-function hideCard() {
-  const card = $("caseCard");
-  if (card) card.classList.remove("is-visible");
+function hideExpand() {
+  $("periodExpand")?.classList.remove("is-visible");
 }
 
-function placeholderThumb(title, year) {
-  const safeTitle = (title || "").replace(/&/g, "and");
-  const svg = `
-  <svg xmlns="http://www.w3.org/2000/svg" width="800" height="460">
-    <defs>
-      <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
-        <stop offset="0" stop-color="#e5e7eb"/>
-        <stop offset="1" stop-color="#f9fafb"/>
-      </linearGradient>
-    </defs>
-    <rect width="100%" height="100%" fill="url(#g)"/>
-    <text x="40" y="150" font-size="72" font-family="system-ui" fill="#111827" font-weight="800">${year}</text>
-    <text x="40" y="230" font-size="34" font-family="system-ui" fill="#374151">${safeTitle}</text>
-    <text x="40" y="290" font-size="24" font-family="system-ui" fill="#6b7280">thumbnail placeholder</text>
-  </svg>`.trim();
-
-  return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
+function showDetail() {
+  $("detailCard")?.classList.add("is-visible");
 }
 
-function setActiveUI(activeId) {
-  const pillsWrap = $("timelineItems");
-  if (pillsWrap) {
-    for (const b of pillsWrap.querySelectorAll("button")) {
-      b.classList.toggle("active", b.dataset.caseId === activeId);
-    }
+function hideDetail() {
+  $("detailCard")?.classList.remove("is-visible");
+}
+
+function setStatus(msg) {
+  setText("statusText", msg);
+}
+
+function summarizeYear(itemsInYear) {
+  if (!itemsInYear || itemsInYear.length === 0) return "No items yet.";
+  const subjects = new Set(itemsInYear.map((x) => x.subject).filter(Boolean));
+  const cats = new Set(itemsInYear.map((x) => x.category).filter(Boolean));
+
+  const parts = [];
+  if (subjects.size) parts.push([...subjects].join(", ").toUpperCase());
+  if (cats.size) parts.push([...cats].join(", "));
+
+  return `${itemsInYear.length} item(s) | ${parts.join(" | ")}`;
+}
+
+function yearHeadline(itemsInYear) {
+  if (!itemsInYear || itemsInYear.length === 0) return "No items yet";
+  if (itemsInYear.length === 1) return itemsInYear[0].title;
+  const cases = itemsInYear.filter((x) => x.category === "case");
+  if (cases.length) return `${cases.length} major case(s)`;
+  return `${itemsInYear.length} key items`;
+}
+
+function yearBadges(itemsInYear) {
+  const set = new Set();
+  for (const it of itemsInYear) {
+    if (it.subject) set.add(it.subject.toUpperCase());
+    if (it.category) set.add(it.category);
   }
-
-  const track = $("scrollerTrack");
-  if (track) {
-    for (const card of track.querySelectorAll("button")) {
-      card.classList.toggle("active", card.dataset.caseId === activeId);
-    }
-  }
+  return [...set].slice(0, 6);
 }
 
-function openItem(items, id, doScroll) {
+function openItemDetail(items, id, doScroll) {
   const c = items.find((x) => x.id === id);
   if (!c) return;
-
-  setActiveUI(c.id);
 
   const meta = [c.year, c.subject, c.category].filter(Boolean).join(" | ");
   setText("cardTitle", c.title);
   setText("cardMeta", meta);
-
   setTags(c.tags);
 
   setText("quickTake", c.quickTake);
@@ -137,110 +138,180 @@ function openItem(items, id, doScroll) {
   setList("reasoningList", c.reasoning);
   setList("precedentList", c.precedent);
   setTerms("termsList", c.terms);
+
   setList("whyExamList", c.whyExam);
   setList("whyRealList", c.whyReal);
+
   setList("leadsToList", c.leadsTo);
   setList("connectsBackList", c.connectsBack);
+
   setLinks("linksList", c.links);
 
-  showCard();
-  setText("statusText", `Opened ${c.title} (${c.year}).`);
-
+  showDetail();
   window.location.hash = `item-${c.id}`;
+  setStatus(`Opened ${c.title} (${c.year}).`);
 
   if (doScroll) {
-    $("caseCard")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    $("detailCard")?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 }
 
-function renderPills(items) {
-  const wrap = $("timelineItems");
-  if (!wrap) return;
-  wrap.innerHTML = "";
+function openYearExpand(year, itemsInYear) {
+  setText("expandTitle", `${year}`);
+  setText("expandMeta", summarizeYear(itemsInYear));
 
-  for (const c of items) {
+  const summary =
+    itemsInYear.length === 0
+      ? "No items for this year yet."
+      : "Click an item below to open details. Later, this area can include APUSH context for the whole year or era.";
+  setText("expandSummary", summary);
+
+  const list = $("expandItems");
+  if (list) {
+    list.innerHTML = "";
+    if (itemsInYear.length === 0) {
+      const p = document.createElement("div");
+      p.className = "muted";
+      p.textContent = "No items yet.";
+      list.appendChild(p);
+    } else {
+      for (const it of itemsInYear) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "item-btn";
+
+        const title = document.createElement("div");
+        title.className = "item-title";
+        title.textContent = it.title;
+
+        const meta = document.createElement("div");
+        meta.className = "item-meta";
+        meta.textContent = [it.subject, it.category, it.vote].filter(Boolean).join(" | ");
+
+        btn.appendChild(title);
+        btn.appendChild(meta);
+
+        btn.addEventListener("click", () => openItemDetail(itemsInYear, it.id, true));
+        list.appendChild(btn);
+      }
+    }
+  }
+
+  showExpand();
+  $("periodExpand")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  setStatus(`Expanded ${year}. Select an item.`);
+}
+
+function renderPeriods(allItems) {
+  const periods = $("periods");
+  if (!periods) return;
+
+  const byYear = new Map();
+  for (const it of allItems) {
+    const y = it.year;
+    if (!byYear.has(y)) byYear.set(y, []);
+    byYear.get(y).push(it);
+  }
+
+  const years = [...byYear.keys()].sort((a, b) => a - b);
+
+  periods.innerHTML = "";
+  for (const y of years) {
+    const itemsInYear = byYear.get(y);
+
+    const section = document.createElement("section");
+    section.className = "period";
+    section.id = `year-${y}`;
+
+    const top = document.createElement("div");
+    top.className = "period-top";
+
+    const left = document.createElement("div");
+
+    const yearEl = document.createElement("div");
+    yearEl.className = "period-year";
+    yearEl.textContent = `${y}`;
+
+    const titleEl = document.createElement("div");
+    titleEl.className = "period-title";
+    titleEl.textContent = yearHeadline(itemsInYear);
+
+    const subEl = document.createElement("div");
+    subEl.className = "period-sub";
+    subEl.textContent =
+      itemsInYear.length === 0
+        ? "No items yet."
+        : "Click to expand what happened in this year, then choose an item.";
+
+    left.appendChild(yearEl);
+    left.appendChild(titleEl);
+    left.appendChild(subEl);
+
+    const right = document.createElement("div");
+    right.className = "period-right";
+
+    const badges = document.createElement("div");
+    badges.className = "badges";
+    for (const b of yearBadges(itemsInYear)) {
+      const s = document.createElement("span");
+      s.textContent = b;
+      badges.appendChild(s);
+    }
+    right.appendChild(badges);
+
+    top.appendChild(left);
+    top.appendChild(right);
+
+    const actions = document.createElement("div");
+    actions.className = "period-actions";
+
+    const hint = document.createElement("div");
+    hint.className = "muted";
+    hint.textContent = `Items: ${itemsInYear.length}`;
+
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.dataset.caseId = c.id;
-    btn.textContent = `${c.year}`;
-    btn.addEventListener("click", () => openItem(items, c.id, true));
-    wrap.appendChild(btn);
+    btn.className = "btn";
+    btn.textContent = "Expand this year";
+    btn.addEventListener("click", () => openYearExpand(y, itemsInYear));
+
+    actions.appendChild(hint);
+    actions.appendChild(btn);
+
+    section.appendChild(top);
+    section.appendChild(actions);
+
+    periods.appendChild(section);
   }
+
+  return years;
 }
 
-function renderDropdown(items) {
+function renderJump(years) {
   const sel = $("yearSelect");
   if (!sel) return;
 
   sel.innerHTML = `<option value="">Select a year</option>`;
-  for (const c of items) {
+  for (const y of years) {
     const opt = document.createElement("option");
-    opt.value = c.id;
-    opt.textContent = `${c.year}  ${c.title}`;
+    opt.value = `${y}`;
+    opt.textContent = `${y}`;
     sel.appendChild(opt);
   }
 
   sel.addEventListener("change", () => {
     if (!sel.value) return;
-    openItem(items, sel.value, true);
+    const target = document.getElementById(`year-${sel.value}`);
+    target?.scrollIntoView({ behavior: "smooth", block: "start" });
+    setStatus(`Jumped to ${sel.value}. Click Expand.`);
   });
 }
 
-function renderScroller(items) {
-  const track = $("scrollerTrack");
-  if (!track) return;
-  track.innerHTML = "";
-
-  for (const c of items) {
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "thumb-card";
-    btn.dataset.caseId = c.id;
-
-    const img = document.createElement("img");
-    img.className = "thumb-img";
-    img.alt = (c.thumbnail && c.thumbnail.alt) || `${c.title} thumbnail`;
-    img.src = (c.thumbnail && c.thumbnail.src) || placeholderThumb(c.title, c.year);
-
-    const body = document.createElement("div");
-    body.className = "thumb-body";
-
-    const y = document.createElement("div");
-    y.className = "thumb-year";
-    y.textContent = `${c.year}`;
-
-    const t = document.createElement("div");
-    t.className = "thumb-title";
-    t.textContent = c.title;
-
-    const sub = document.createElement("div");
-    sub.className = "thumb-sub";
-    sub.textContent = [c.subject, c.category].filter(Boolean).join(" | ");
-
-    body.appendChild(y);
-    body.appendChild(t);
-    body.appendChild(sub);
-
-    btn.appendChild(img);
-    btn.appendChild(body);
-
-    btn.addEventListener("click", () => openItem(items, c.id, true));
-    track.appendChild(btn);
-  }
-
-  const prev = $("scrollerPrev");
-  const next = $("scrollerNext");
-
-  if (prev) {
-    prev.addEventListener("click", () => {
-      track.scrollBy({ left: -320, behavior: "smooth" });
-    });
-  }
-  if (next) {
-    next.addEventListener("click", () => {
-      track.scrollBy({ left: 320, behavior: "smooth" });
-    });
-  }
+function wireCollapse() {
+  $("btnCollapse")?.addEventListener("click", () => {
+    hideExpand();
+    setStatus("Collapsed period panel.");
+  });
 }
 
 function wireCopyLink() {
@@ -269,33 +340,41 @@ async function loadItems() {
   return data;
 }
 
-function openFromHash(items) {
+function openFromHash(allItems) {
   const h = (window.location.hash || "").trim();
   const m = h.match(/^#item-(.+)$/);
   if (!m) return false;
 
   const id = m[1];
-  if (!items.some((x) => x.id === id)) return false;
+  const c = allItems.find((x) => x.id === id);
+  if (!c) return false;
 
-  openItem(items, id, false);
+  const yearSection = document.getElementById(`year-${c.year}`);
+  yearSection?.scrollIntoView({ behavior: "smooth", block: "start" });
+
+  // Show expand for that year, then open detail
+  const itemsInYear = allItems.filter((x) => x.year === c.year);
+  openYearExpand(c.year, itemsInYear);
+  openItemDetail(itemsInYear, c.id, false);
   return true;
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
+  wireCollapse();
   wireCopyLink();
-  hideCard();
+  hideExpand();
+  hideDetail();
 
   try {
-    const items = await loadItems();
-    renderScroller(items);
-    renderDropdown(items);
-    renderPills(items);
+    const allItems = await loadItems();
+    const years = renderPeriods(allItems) || [];
+    renderJump(years);
 
-    if (!openFromHash(items)) {
-      setText("statusText", "Scroll and click a year to open the card.");
+    if (!openFromHash(allItems)) {
+      setStatus("Scroll to a year. Click it to expand.");
     }
   } catch (e) {
-    setText("statusText", "Error loading timeline data.");
+    setStatus("Error loading timeline data.");
     console.error(e);
   }
 });
