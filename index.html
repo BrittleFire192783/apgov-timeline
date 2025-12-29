@@ -17,64 +17,22 @@
       <div class="wrap">
         <div class="brand">
           <div class="brand-title">AP Gov Timeline</div>
-          <div class="brand-subtitle">Cases and key documents, organized by year.</div>
+          <div class="brand-subtitle">Click a year. A case card appears above the study notes.</div>
         </div>
 
         <nav class="top-actions" aria-label="Top actions">
-          <a class="btn" href="#timeline">Go to timeline</a>
+          <a class="btn" href="#timeline">Timeline</a>
+          <a class="btn btn-secondary" href="#howto">How to use</a>
         </nav>
       </div>
     </header>
 
     <main class="wrap">
-      <section class="timeline-section" aria-label="Overview">
-        <div class="timeline-header">
-          <h1 class="h1">How to use this site</h1>
-          <div class="status"><span class="muted">Student-authored study notes</span></div>
-        </div>
-
-        <div class="timeline">
-          <div class="grid">
-            <div class="panel">
-              <h2 class="h2">What it is</h2>
-              <p class="p muted">
-                A simple timeline that opens a case card with facts, the constitutional question, the holding, key reasoning,
-                and why it matters for AP Gov.
-              </p>
-            </div>
-
-            <div class="panel">
-              <h2 class="h2">How to study</h2>
-              <ul class="list">
-                <li>Pick a year on the timeline.</li>
-                <li>Read the Quick Take and Holding first.</li>
-                <li>Scan Facts and Reasoning for test-ready language.</li>
-                <li>Use Connections to link cases by theme.</li>
-              </ul>
-            </div>
-
-            <div class="panel span-2">
-              <h2 class="h2">First demo set</h2>
-              <p class="p muted">
-                The first two cards are designed to prove the format before expanding.
-              </p>
-              <ul class="list">
-                <li>McCulloch v. Maryland (1819)</li>
-                <li>Gibbons v. Ogden (1824)</li>
-              </ul>
-              <p class="p muted">
-                Next: the timeline and carousel will appear below once <code>app.js</code> and <code>data/cases.json</code> are filled.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section id="timeline" class="timeline-section" aria-label="Timeline">
         <div class="timeline-header">
           <h1 class="h1">Timeline</h1>
           <div class="status">
-            <span id="statusText">Timeline will load after app.js is implemented.</span>
+            <span id="statusText">Pick a year to open the case card.</span>
           </div>
         </div>
 
@@ -83,7 +41,7 @@
         </div>
       </section>
 
-      <section class="card-section" aria-label="Case card">
+      <section id="caseCard" class="card-section" aria-label="Case card">
         <div class="card-shell">
           <div class="card-topbar">
             <div class="card-titleblock">
@@ -167,7 +125,7 @@
           </div>
 
           <div class="card-footer">
-            <div class="hint">Tip: Use the timeline, then add more cases once the format feels right.</div>
+            <div class="hint">Tip: Click a year, then scan Quick Take and Holding first.</div>
             <div class="footer-actions">
               <button id="btnOpenHash" class="btn btn-secondary" type="button">Copy link to this case</button>
             </div>
@@ -175,10 +133,47 @@
         </div>
       </section>
 
-      <footer class="site-footer">
-        <div class="muted small">
-          Student-authored summaries. Confirm details with official sources if needed.
+      <section id="howto" class="timeline-section" aria-label="How to use">
+        <div class="timeline-header">
+          <h1 class="h1">How to use this site</h1>
+          <div class="status"><span class="muted">Student-authored study notes</span></div>
         </div>
+
+        <div class="timeline">
+          <div class="grid">
+            <div class="panel">
+              <h2 class="h2">What it is</h2>
+              <p class="p muted">
+                A timeline that opens a case card with facts, the constitutional question, the holding, key reasoning,
+                and why it matters for AP Gov.
+              </p>
+            </div>
+
+            <div class="panel">
+              <h2 class="h2">How to study</h2>
+              <ul class="list">
+                <li>Pick a year on the timeline.</li>
+                <li>Read Quick Take and Holding first.</li>
+                <li>Scan Facts and Reasoning for test-ready language.</li>
+                <li>Use Connections to link cases by theme.</li>
+              </ul>
+            </div>
+
+            <div class="panel span-2">
+              <h2 class="h2">First demo set</h2>
+              <p class="p muted">The first two cards prove the format before expanding.</p>
+              <ul class="list">
+                <li>McCulloch v. Maryland (1819)</li>
+                <li>Gibbons v. Ogden (1824)</li>
+              </ul>
+              <p class="p muted">Next: add more cases one unit at a time.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <div class="muted small">Student-authored summaries. Confirm details with official sources if needed.</div>
       </footer>
     </main>
 
