@@ -1,0 +1,73 @@
+backend:
+  name: github
+  repo: BrittleFire192783/apgov-timeline
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "cases"
+    label: "Court Cases"
+    file: "data/cases.json"
+    format: "json"
+    editor:
+      preview: false
+    fields:
+      - { label: "ID", name: "id", widget: "string" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Year", name: "year", widget: "number" }
+      - { label: "Subject", name: "subject", widget: "select", options: ["apgov", "apush"] }
+      - { label: "Category", name: "category", widget: "string", default: "case" }
+      - { label: "Vote", name: "vote", widget: "string", required: false }
+
+      - { label: "Quick Take", name: "quickTake", widget: "text" }
+      - { label: "Core Prompt", name: "corePrompt", widget: "text" }
+      - { label: "Answer Label", name: "answerLabel", widget: "string", default: "Holding" }
+      - { label: "Answer Text", name: "answerText", widget: "text" }
+
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+
+      - label: "Facts"
+        name: "facts"
+        widget: "list"
+
+      - label: "Reasoning"
+        name: "reasoning"
+        widget: "list"
+
+      - label: "Precedent"
+        name: "precedent"
+        widget: "list"
+
+      - label: "Terms"
+        name: "terms"
+        widget: "list"
+        fields:
+          - { label: "Term", name: "term", widget: "string" }
+          - { label: "Definition", name: "definition", widget: "string" }
+
+      - label: "Why It Matters (Exam)"
+        name: "whyExam"
+        widget: "list"
+
+      - label: "Why It Matters (Real World)"
+        name: "whyReal"
+        widget: "list"
+
+      - label: "Leads To"
+        name: "leadsTo"
+        widget: "list"
+
+      - label: "Connects Back"
+        name: "connectsBack"
+        widget: "list"
+
+      - label: "Links"
+        name: "links"
+        widget: "list"
+        fields:
+          - { label: "Label", name: "label", widget: "string" }
+          - { label: "URL", name: "url", widget: "string" }
