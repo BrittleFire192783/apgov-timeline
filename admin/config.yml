@@ -1,7 +1,12 @@
+site_url: https://apgov-timeline.pages.dev
+publish_mode: editorial_workflow
+
 backend:
   name: github
   repo: BrittleFire192783/apgov-timeline
   branch: main
+  base_url: https://apgov-timeline.pages.dev
+  auth_endpoint: api/auth
 
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
