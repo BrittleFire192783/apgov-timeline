@@ -5,9 +5,8 @@ backend:
   name: github
   repo: BrittleFire192783/apgov-timeline
   branch: main
-  base_url: https://apgov-timeline.pages.dev
-  auth_endpoint: api/auth
-  app_id: GITHUB
+  base_url: https://apgov-timeline.pages.dev/api
+  auth_endpoint: auth
 
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"

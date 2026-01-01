@@ -127,4 +127,208 @@
       }
     ]
   }
+,
+{
+  "id": "marbury-1803",
+  "subject": "apgov",
+  "category": "case",
+  "thumbnail": { "src": "", "alt": "Marbury v. Madison thumbnail" },
+  "title": "Marbury v. Madison",
+  "year": 1803,
+  "type": "Supreme Court case",
+  "vote": "4-0",
+  "tags": ["Judicial Review", "Separation of Powers"],
+  "quickTake": "Established the power of judicial review.",
+  "corePrompt": "Does the Supreme Court have the authority to declare acts of Congress unconstitutional?",
+  "answerLabel": "Holding",
+  "answerText": "The Supreme Court has the power of judicial review and may declare acts of Congress unconstitutional.",
+  "facts": [
+    "William Marbury was appointed justice of the peace but did not receive his commission.",
+    "Marbury sued Secretary of State James Madison.",
+    "The Judiciary Act of 1789 expanded the Court’s original jurisdiction."
+  ],
+  "reasoning": [
+    "The Constitution is the supreme law of the land.",
+    "Any law conflicting with the Constitution is void.",
+    "It is the duty of the judiciary to interpret the law."
+  ],
+  "precedent": [
+    "Established judicial review.",
+    "Strengthened the power of the judicial branch."
+  ],
+  "whyExam": [
+    "Foundation of judicial power.",
+    "Frequently referenced in separation of powers questions."
+  ],
+  "whyReal": [
+    "Allows courts to strike down unconstitutional laws.",
+    "Shapes every constitutional case that follows."
+  ]
+}
+,
+{
+  "id": "fletcher-1810",
+  "subject": "apgov",
+  "category": "case",
+  "thumbnail": { "src": "", "alt": "Fletcher v. Peck thumbnail" },
+  "title": "Fletcher v. Peck",
+  "year": 1810,
+  "type": "Supreme Court case",
+  "vote": "6-1",
+  "tags": ["Judicial Review", "Contracts Clause"],
+  "quickTake": "The Court ruled that state laws violating contracts are unconstitutional.",
+  "corePrompt": "Can a state legislature invalidate a private contract?",
+  "answerLabel": "Holding",
+  "answerText": "State laws that impair contractual obligations violate the Constitution.",
+  "facts": [
+    "Georgia sold land through corrupt legislative acts.",
+    "A later legislature attempted to void the land sales.",
+    "The dispute reached the Supreme Court."
+  ],
+  "reasoning": [
+    "Contracts are protected under the Constitution.",
+    "State legislatures cannot retroactively cancel valid contracts."
+  ],
+  "precedent": [
+    "First case striking down a state law.",
+    "Extended judicial review to state legislation."
+  ],
+  "whyExam": [
+    "Shows judicial review over states.",
+    "Often paired with Marbury to show expansion of Court power."
+  ]
+}
+,
+{
+  "id": "brown-1954",
+  "subject": "apgov",
+  "category": "case",
+  "thumbnail": { "src": "", "alt": "Brown v. Board of Education thumbnail" },
+  "title": "Brown v. Board of Education",
+  "year": 1954,
+  "type": "Supreme Court case",
+  "vote": "9-0",
+  "tags": ["Equal Protection", "Civil Rights"],
+  "quickTake": "Segregation in public schools is unconstitutional.",
+  "corePrompt": "Does racial segregation in public schools violate the Equal Protection Clause?",
+  "answerLabel": "Holding",
+  "answerText": "Separate educational facilities are inherently unequal and violate the Equal Protection Clause.",
+  "facts": [
+    "African American students were denied access to white public schools.",
+    "Segregation was previously allowed under Plessy v. Ferguson.",
+    "Plaintiffs argued segregation caused educational harm."
+  ],
+  "reasoning": [
+    "Education is fundamental to citizenship.",
+    "Segregation creates feelings of inferiority.",
+    "Separate facilities are unequal in practice."
+  ],
+  "precedent": [
+    "Overturned Plessy v. Ferguson in education.",
+    "Laid the groundwork for desegregation."
+  ],
+  "whyExam": [
+    "Key Equal Protection case.",
+    "Frequently tested in civil rights questions."
+  ]
+}
+,
+{
+  "id": "barron-1833",
+  "subject": "apgov",
+  "category": "case",
+  "thumbnail": { "src": "", "alt": "Barron v. Baltimore thumbnail" },
+  "title": "Barron v. Baltimore",
+  "year": 1833,
+  "type": "Supreme Court case",
+  "vote": "7-0",
+  "tags": ["Federalism", "Bill of Rights"],
+  "quickTake": "The Bill of Rights originally applied only to the federal government.",
+  "corePrompt": "Does the Bill of Rights apply to the states?",
+  "answerLabel": "Holding",
+  "answerText": "The Bill of Rights applies only to the federal government, not the states.",
+  "facts": [
+    "John Barron sued Baltimore after city construction damaged his wharf.",
+    "Barron claimed a taking under the Fifth Amendment.",
+    "The case questioned whether the Bill of Rights limited state governments."
+  ],
+  "reasoning": [
+    "The Constitution was created to limit the national government.",
+    "States were not bound by the Bill of Rights unless explicitly stated."
+  ],
+  "precedent": [
+    "Established that the Bill of Rights did not apply to the states.",
+    "Later overturned through selective incorporation."
+  ],
+  "whyExam": [
+    "Sets up the incorporation doctrine.",
+    "Frequently paired with Gitlow v. New York."
+  ]
+}
+,
+{
+  "id": "cooper-1958",
+  "subject": "apgov",
+  "category": "case",
+  "thumbnail": { "src": "", "alt": "Cooper v. Aaron thumbnail" },
+  "title": "Cooper v. Aaron",
+  "year": 1958,
+  "type": "Supreme Court case",
+  "vote": "9-0",
+  "tags": ["Judicial Review", "Supremacy Clause", "Civil Rights"],
+  "quickTake": "States must follow Supreme Court decisions.",
+  "corePrompt": "Are state governments bound by Supreme Court interpretations of the Constitution?",
+  "answerLabel": "Holding",
+  "answerText": "State officials are bound by Supreme Court rulings and must enforce them.",
+  "facts": [
+    "Arkansas officials resisted school desegregation after Brown v. Board.",
+    "The governor attempted to delay integration.",
+    "The Court reaffirmed its authority."
+  ],
+  "reasoning": [
+    "The Supreme Court is the final interpreter of the Constitution.",
+    "State resistance undermines constitutional supremacy."
+  ],
+  "precedent": [
+    "Reaffirmed judicial supremacy.",
+    "Strengthened enforcement of civil rights rulings."
+  ],
+  "whyExam": [
+    "Demonstrates the supremacy of federal law.",
+    "Often cited in questions about judicial authority."
+  ]
+}
+,
+{
+  "id": "lopez-1995",
+  "subject": "apgov",
+  "category": "case",
+  "thumbnail": { "src": "", "alt": "United States v. Lopez thumbnail" },
+  "title": "United States v. Lopez",
+  "year": 1995,
+  "type": "Supreme Court case",
+  "vote": "5-4",
+  "tags": ["Commerce Clause", "Federalism"],
+  "quickTake": "Congress has limits under the Commerce Clause.",
+  "corePrompt": "Does Congress have the power to regulate gun possession in school zones under the Commerce Clause?",
+  "answerLabel": "Holding",
+  "answerText": "Gun possession near schools is not an economic activity that Congress may regulate under the Commerce Clause.",
+  "facts": [
+    "Congress passed the Gun-Free School Zones Act.",
+    "A student challenged the law after being charged.",
+    "The law did not regulate economic activity."
+  ],
+  "reasoning": [
+    "The Commerce Clause has judicially enforceable limits.",
+    "Allowing regulation here would give Congress unlimited power."
+  ],
+  "precedent": [
+    "First major limit on the Commerce Clause since the New Deal.",
+    "Reasserted state authority."
+  ],
+  "whyExam": [
+    "Often paired with Gibbons to show expansion vs limitation.",
+    "Key modern federalism case."
+  ]
+}
 ]
