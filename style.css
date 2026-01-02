@@ -346,25 +346,35 @@ body {
 
 .item-btn {
   border: 1px solid var(--border);
-  background: #fff;
-  border-radius: 14px;
-  padding: 0.85rem;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.25rem 1.35rem;
   cursor: pointer;
   text-align: left;
+  min-height: 110px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
 
 .item-btn:hover {
-  background: #f9fafb;
+  background: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
 }
 
 .item-btn .item-title {
   font-weight: 950;
-  margin-bottom: 0.25rem;
+  font-size: 1.05rem;
+  margin-bottom: 0.35rem;
 }
 
 .item-btn .item-meta {
   color: var(--muted);
-  font-size: 0.85rem;
+  font-size: 0.92rem;
 }
 
 /* Detail card */
