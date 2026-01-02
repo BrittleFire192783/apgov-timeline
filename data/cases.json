@@ -393,4 +393,150 @@
     "Frequently tested in rights of the accused questions."
   ]
 }
+,
+{
+  "id": "mapp-1961",
+  "subject": "apgov",
+  "category": "case",
+  "thumbnail": { "src": "", "alt": "Mapp v. Ohio thumbnail" },
+  "title": "Mapp v. Ohio",
+  "year": 1961,
+  "type": "Supreme Court case",
+  "vote": "6-3",
+  "tags": ["Fourth Amendment", "Exclusionary Rule", "Incorporation"],
+  "quickTake": "Illegally obtained evidence cannot be used in state courts.",
+  "corePrompt": "Does the exclusionary rule apply to the states?",
+  "answerLabel": "Holding",
+  "answerText": "The exclusionary rule applies to the states through the Fourteenth Amendment.",
+  "facts": [
+    "Police searched Dollree Mapp’s home without a valid warrant.",
+    "Evidence was seized and used to convict her.",
+    "Mapp challenged the search as unconstitutional."
+  ],
+  "reasoning": [
+    "The Fourth Amendment protects against unreasonable searches and seizures.",
+    "Rights would be meaningless without enforcement.",
+    "The Fourteenth Amendment applies this protection to the states."
+  ]
+},
+{
+  "id": "reynolds-1879",
+  "subject": "apgov",
+  "category": "case",
+  "thumbnail": { "src": "", "alt": "Reynolds v. United States thumbnail" },
+  "title": "Reynolds v. United States",
+  "year": 1879,
+  "type": "Supreme Court case",
+  "vote": "9-0",
+  "tags": ["Free Exercise Clause", "Religion"],
+  "quickTake": "Religious belief does not excuse criminal conduct.",
+  "corePrompt": "Does the Free Exercise Clause protect religious practices that violate criminal law?",
+  "answerLabel": "Holding",
+  "answerText": "The Free Exercise Clause protects belief, not criminal conduct.",
+  "facts": [
+    "George Reynolds practiced polygamy as part of his religion.",
+    "He was convicted under a federal anti-bigamy law.",
+    "Reynolds argued the law violated his religious freedom."
+  ],
+  "reasoning": [
+    "Allowing religious exemptions to criminal laws would undermine government authority.",
+    "Belief is protected, actions are not."
+  ]
+},
+{
+  "id": "wisconsin-yoder-1972",
+  "subject": "apgov",
+  "category": "case",
+  "thumbnail": { "src": "", "alt": "Wisconsin v. Yoder thumbnail" },
+  "title": "Wisconsin v. Yoder",
+  "year": 1972,
+  "type": "Supreme Court case",
+  "vote": "7-0",
+  "tags": ["Free Exercise Clause", "Religion"],
+  "quickTake": "Compulsory education laws cannot violate sincere religious beliefs.",
+  "corePrompt": "Can states require Amish children to attend school past 8th grade?",
+  "answerLabel": "Holding",
+  "answerText": "Wisconsin’s compulsory education law violated the Free Exercise Clause.",
+  "facts": [
+    "Amish parents refused to send children to school past age 14.",
+    "Wisconsin law required attendance until age 16.",
+    "Parents argued this violated their religious beliefs."
+  ],
+  "reasoning": [
+    "The law substantially burdened religious practice.",
+    "The state lacked a compelling interest."
+  ]
+},
+{
+  "id": "schenck-1919",
+  "subject": "apgov",
+  "category": "case",
+  "thumbnail": { "src": "", "alt": "Schenck v. United States thumbnail" },
+  "title": "Schenck v. United States",
+  "year": 1919,
+  "type": "Supreme Court case",
+  "vote": "9-0",
+  "tags": ["Free Speech", "Clear and Present Danger"],
+  "quickTake": "Speech creating a clear and present danger is not protected.",
+  "corePrompt": "Can speech be limited during wartime?",
+  "answerLabel": "Holding",
+  "answerText": "Speech posing a clear and present danger is not protected by the First Amendment.",
+  "facts": [
+    "Schenck distributed anti-draft pamphlets during WWI.",
+    "He was convicted under the Espionage Act.",
+    "He argued his speech was protected."
+  ],
+  "reasoning": [
+    "Context matters in evaluating speech.",
+    "Speech that threatens national security can be restricted."
+  ]
+},
+{
+  "id": "tinker-1969",
+  "subject": "apgov",
+  "category": "case",
+  "thumbnail": { "src": "", "alt": "Tinker v. Des Moines thumbnail" },
+  "title": "Tinker v. Des Moines",
+  "year": 1969,
+  "type": "Supreme Court case",
+  "vote": "7-2",
+  "tags": ["Student Speech", "First Amendment"],
+  "quickTake": "Students do not lose First Amendment rights at school.",
+  "corePrompt": "Do students have First Amendment rights in public schools?",
+  "answerLabel": "Holding",
+  "answerText": "Non-disruptive student expression is protected.",
+  "facts": [
+    "Students wore black armbands to protest the Vietnam War.",
+    "Schools banned the armbands.",
+    "Students sued for violating free speech rights."
+  ],
+  "reasoning": [
+    "Speech cannot be suppressed without evidence of disruption.",
+    "Symbolic speech is protected."
+  ]
+},
+{
+  "id": "mcdonald-2010",
+  "subject": "apgov",
+  "category": "case",
+  "thumbnail": { "src": "", "alt": "McDonald v. Chicago thumbnail" },
+  "title": "McDonald v. Chicago",
+  "year": 2010,
+  "type": "Supreme Court case",
+  "vote": "5-4",
+  "tags": ["Second Amendment", "Incorporation"],
+  "quickTake": "The Second Amendment applies to the states.",
+  "corePrompt": "Does the Second Amendment limit state governments?",
+  "answerLabel": "Holding",
+  "answerText": "The Second Amendment is incorporated through the Fourteenth Amendment.",
+  "facts": [
+    "Chicago banned handgun possession.",
+    "Gun owners challenged the ban.",
+    "They argued the Second Amendment applied to states."
+  ],
+  "reasoning": [
+    "The right to bear arms is fundamental.",
+    "The Fourteenth Amendment applies it to the states."
+  ]
+}
 ]

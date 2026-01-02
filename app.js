@@ -243,10 +243,29 @@ function renderYears(allItems) {
 
     const subEl = document.createElement("div");
     subEl.className = "year-sub";
-    subEl.textContent =
-      itemsInYear.length === 0
-        ? "No items yet."
-        : "Open the year snapshot, then pick a card to study.";
+
+    if (itemsInYear.length === 0) {
+      subEl.textContent = "No items yet.";
+    } else {
+      const casesInYear = itemsInYear.filter((x) => x.category === "case");
+
+      // If this year has case items, list them (keeps the UI feeling specific, not template-y)
+      if (casesInYear.length) {
+        const titles = casesInYear
+          .map((c) => c.title)
+          .filter(Boolean);
+
+        // Keep it readable on the year card: show up to 3 titles, then a +N indicator
+        const shown = titles.slice(0, 3);
+        const remaining = titles.length - shown.length;
+
+        subEl.textContent = remaining > 0
+          ? `Cases: ${shown.join(" • ")} • +${remaining} more`
+          : `Cases: ${shown.join(" • ")}`;
+      } else {
+        subEl.textContent = "Open the year snapshot, then pick a card to study.";
+      }
+    }
 
     left.appendChild(yearEl);
     left.appendChild(titleEl);
