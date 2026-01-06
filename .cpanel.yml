@@ -10,3 +10,9 @@ deployment:
         --exclude "README.md" \
         --exclude "node_modules" \
         ./ "$DEPLOYPATH"
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/dealin9/public_html/mrhsgov/
+    - /bin/mkdir -p "$DEPLOYPATH"
+    - /usr/bin/rsync -a --delete --exclude=".git/" --exclude=".cpanel.yml" --exclude=".gitignore" --exclude="README.md" --exclude="node_modules/" ./ "$DEPLOYPATH"
+    - /bin/rm -rf "$DEPLOYPATH/.git" "$DEPLOYPATH/.gitmodules"
